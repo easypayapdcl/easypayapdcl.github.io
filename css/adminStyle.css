@@ -1,0 +1,225 @@
+/* Custom Stylesheet */
+/**
+ * Use this file to override Materialize files so you can update
+ * the core Materialize files in the future
+ *
+ * Made By MaterializeCSS.com
+ */
+
+
+.icon-block {
+  padding: 0 15px;
+}
+.icon-block .material-icons {
+	font-size: inherit;
+}
+
+.button {
+  background-color: #4527a0;
+  border: 1px solid #757575;
+  color: white;
+  padding: 20px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 24px;
+  margin: 4px 2px;
+  height: 200px;
+  width: 200px;
+  border-radius: 50%;
+  cursor: pointer;
+}
+
+.first-row-margin {
+  margin-top: 4rem !important;
+}
+
+.second-row-margin {
+  margin-top: 4rem !important;
+}
+.first-modal-margin{
+  margin-top:1rem !important;
+}
+.input-field input:focus + label {
+  color: #ff0066 !important;
+}
+/* label underline focus color */
+.row .input-field input:focus {
+  border-bottom: 1px solid #ff0066 !important;
+  box-shadow: 0 1px 0 0 #ff0066 !important
+}
+
+.typo {
+  letter-spacing: 8px;
+  font-size: 20px;
+  font-weight: 700;
+  color: #0097a7;
+}
+
+.typo_content {
+  letter-spacing: 5px;
+  font-size: 15px !important;
+  font-weight: 500 !important;
+  color: #d2aedb !important;
+}
+.cons_no {
+  cursor: pointer;
+}
+.menu_img {
+  align-self: center;
+  border: 1px solid #757575;
+  text-align: center;
+  font-size: 24px;
+  height: 200px;
+  width: 200px;
+  border-radius: 50%;
+
+}
+.footer-fixed {
+  position: fixed;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  }
+  
+
+
+  @media only screen and (max-width : 992px) {
+    header, .main, footer {
+      padding-left: 0;
+    }
+  }
+
+
+.side-navigation-custom {
+  
+  background: white;
+  height:87vh !important;
+  letter-spacing: 0.7px;
+  position:absolute;
+  z-index:1;
+  margin-top:2px;
+
+}
+
+.input-field {
+    margin-top: 0rem;
+    margin-bottom: 0rem;
+}
+
+.side-navigation-custom li {
+  margin-left: 17px;
+    padding: 11px 3px;
+    border-bottom: 1px dashed #b2d8e8;
+}
+
+.side-navigation-custom .material-icons {
+
+  padding-right: 7px;
+}
+
+.side-navigation-custom p {
+  margin-top: 5px;
+}
+
+.no-border {
+  border: none !important;
+}
+
+.content-custom {
+  
+  display: none;
+  overflow: hidden;
+  cursor: pointer;
+}
+
+.content-card {
+  background: white;
+  
+}
+
+
+
+.custom-style {
+  
+  margin-top: 2px !important;
+  padding: 14px !important;
+  margin-left:0vw!important;
+  height: 87vh;
+  overflow-y: scroll;
+
+}
+.update_card_custom {
+  padding-top: 20px;
+  padding-bottom: 20px;
+}
+.migration_margin{
+  margin-top: 40px;
+}
+
+.input-label {
+	padding-top: 25px !important;
+	font-weight: 500;
+	font-size: 18px;
+	letter-spacing: 1px;
+	color: #0097a7;
+}
+
+.check {
+	opacity: 100 !important;
+	margin-top: 3px;
+	margin-left: 5px;
+	width: 16px !important;
+	height: 20px !important;
+}
+
+.star {
+	color: red;
+}
+
+i.small {
+    font-size: 1.5rem !important;
+}
+
+.text_label_filter
+ {
+  letter-spacing: 1px;
+  font-size: 15px;
+  font-weight: 500;
+  color: #37474f ;
+  padding-top:22px !important;
+  }
+  
+  .active{ background-color: #e8eaf6; }
+  li:hover{ background-color: #e8eaf6; }
+  
+  .pink-flavour {
+  background: #800080;
+  /* fallback for old browsers */
+  background: -webkit-linear-gradient(to right, #ffc0cb, #800080);
+  /* Chrome 10-25, Safari 5.1-6 */
+  background: linear-gradient(to right, #ffc0cb, #800080);
+  /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+}
+
+.purPink {
+  background: #7F00FF;
+  /* fallback for old browsers */
+  background: -webkit-linear-gradient(to right, #E100FF, #7F00FF);
+  /* Chrome 10-25, Safari 5.1-6 */
+  background: linear-gradient(to right, #E100FF, #7F00FF);
+  /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+}
+
+.tealFlavour{
+	background: #312450;
+  	/* fallback for old browsers */
+  	background: -webkit-linear-gradient(to left, #5e42a6 0%, #312450 100%);
+  	/* Chrome 10-25, Safari 5.1-6 */
+  	background: linear-gradient(to left, #5e42a6 0%, #312450 100%);
+  	/* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+}
+
+.sidenav li.active {
+	border-right: 3px solid #5e42a6 !important;
+}

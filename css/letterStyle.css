@@ -1,0 +1,27 @@
+.typo_coContent {
+    letter-spacing: 2px;
+    font-size: 15px !important;
+    font-weight: 400;
+    padding-top: 24px !important;
+    color: #0097a7 !important;
+    text-align: left;
+}
+
+
+.titleHeader{
+ 	font-size: 22px;
+ 	font-weight: 500;
+    letter-spacing: 3px;
+ }
+ .tabs .indicator {
+    background-color: #0097a7;
+}
+.tabs .tab .active {
+    background-color:#bbdefb   !important;    
+}
+.row{
+    margin-bottom: 0px;
+}
+.tableFixHead          { overflow-y: auto; }
+.tableFixHead thead th {  position: sticky; top: 0; z-index:10;}
+th     { color:#0097a7 ; background:#ffffff; }

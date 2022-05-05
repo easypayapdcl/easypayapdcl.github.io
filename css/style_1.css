@@ -1,0 +1,99 @@
+/* Custom Stylesheet */
+/**
+ * Use this file to override Materialize files so you can update
+ * the core Materialize files in the future
+ *
+ * Made By MaterializeCSS.com
+ */
+
+
+.icon-block {
+  padding: 0 15px;
+}
+.icon-block .material-icons {
+	font-size: inherit;
+}
+
+.button {
+  background-color: #4527a0;
+  border: 1px solid #757575;
+  color: white;
+  padding: 20px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 24px;
+  margin: 4px 2px;
+  height: 200px;
+  width: 200px;
+  border-radius: 50%;
+  cursor: pointer;
+}
+
+.first-row-margin {
+  margin-top: 4rem !important;
+}
+
+.second-row-margin {
+  margin-top: 4rem !important;
+}
+.first-modal-margin{
+  margin-top:1rem !important;
+}
+.input-field input:focus + label {
+  color: #ff0066 !important;
+}
+/* label underline focus color */
+.row .input-field input:focus {
+  border-bottom: 1px solid #ff0066 !important;
+  box-shadow: 0 1px 0 0 #ff0066 !important
+}
+
+.typo {
+  letter-spacing: 8px;
+  font-size: 20px;
+  font-weight: 700;
+  color: #0097a7;
+}
+
+.typo_content {
+  letter-spacing: 5px;
+  font-size: 15px !important;
+  font-weight: 500 !important;
+  color: #d2aedb !important;
+}
+.cons_no {
+  cursor: pointer;
+}
+.menu_img {
+  align-self: center;
+  border: 1px solid #757575;
+  text-align: center;
+  font-size: 24px;
+  height: 200px;
+  width: 200px;
+  border-radius: 50%;
+
+}
+
+
+.label {
+  padding-top:15px !important;
+  font-weight: 500;
+  text-align: left;
+  font-size: 18px;
+  letter-spacing: 2px;
+}
+
+.no-margin {
+  margin-bottom: 0 !important
+}
+
+.custom-style {
+  margin-top: 0.35rem !important;
+  margin-bottom: 0.35rem !important;
+}
+
+.border-outline {
+  border: 1px solid darkcyan
+}
