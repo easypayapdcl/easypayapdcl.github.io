@@ -43,8 +43,40 @@ link.href = uri
        document.body.removeChild(link)
     }
 
-function exportToPdf(ExportedData, header, fileName, fromDate, toDate , exportType, subDivision,outstandingAmount = null,isOutstanding = false,isEsuvidha = false) {
+function exportToPdfCRMDocumentView(ExportedData, header,fileName, searchParamText , searchParamType, searchParamValue,subDivision) {
+dynamicWidth = []
+bodyToExtract = []
 
+var indexes = header.split(',')
+
+var widthPercent = 100 / indexes.length
+
+    indexes.forEach(() => { dynamicWidth.push( widthPercent +  '%') })
+    bodyToExtract.push(indexes)
+
+    ExportedData.forEach((values, index) => {
+        var temp = []
+        values.forEach((val, index) => {
+        if (val == null) temp.push('N/A')
+            else {            
+            if (typeof val === 'string' || val instanceof String) {
+            if (val.match(dateRegEx))
+            val = val.split('-').reverse().join('/')
+            }
+           
+            temp.push(val)
+            }
+        })
+
+        bodyToExtract.push(temp)
+    })
+
+ 	printCRMDocPdf(fileName, searchParamText , searchParamType, searchParamValue, subDivision)
+   
+}
+
+function exportToPdf(ExportedData, header, fileName, fromDate = null, toDate = null , exportType, subDivision,outstandingAmount = null,isOutstanding = false,isEsuvidha = false) {
+console.log("first",fromDate,toDate);
 dynamicWidth = []
 bodyToExtract = []
 
@@ -83,7 +115,7 @@ var widthPercent = 100 / indexes.length
 }
 
 function printeSuvidhaPdf(fileName, fromDate, toDate, exportType, subDivision) {
-
+	console.log("esuvidha",fromDate,toDate);
 var startDate = "", endDate = ""
 try {
 
@@ -93,7 +125,7 @@ toDate = toDate.split('-').reverse().join('/')
 
 startDate = { text: 'Start Date: ' + fromDate , style: 'normalText'}
 endDate = { text: 'End Date: ' + toDate , style: 'normalText'}
-} else {
+}else{
 
 startDate = { text: 'Month: ' + MONTHS[parseInt(fromDate) - 1] , style: 'normalText'}
 endDate = { text: 'Year: ' + toDate , style: 'normalText'}
@@ -203,8 +235,113 @@ pageSize: 'A2',
     pdf.download(fileName + '.pdf');
 }
 
-function printPdf(fileName, fromDate, toDate, exportType, subDivision) {
 
+function printCRMDocPdf(fileName, searchParamText , searchParamType, searchParamValue, subDivision) {
+
+var searchParamTextPdf = ""
+searchParamTextPdf = { text: searchParamText + searchParamValue , style: 'normalText'}
+
+var currentDate = new Date()
+
+var dd = currentDate.getDate();
+    var mm = currentDate.getMonth() + 1;
+
+    var yyyy = currentDate.getFullYear();
+    if (dd < 10) {
+        dd = '0' + dd;
+    }
+    if (mm < 10) {
+        mm = '0' + mm;
+    }
+    var today = dd + '/' + mm + '/' + yyyy;
+   
+    var docDefinition = {
+
+pageSize: 'A2',
+        pageOrientation: 'landscape',
+        footer: function (currentPage, pageCount) {
+            return {
+                margin: 10,
+                columns: [
+                    {
+                        fontSize: 9,
+                        text: [
+                            {
+                                text: '------------------------------------------------------------------------------------------------------------------------------------------------------' +
+                                    '\n',
+                                margin: [0, 20]
+                            },
+                            {
+                                text: '© Assam Power Distribution Company Ltd.(R-APDRP Cell) (' + currentPage.toString() + ' of ' + pageCount + ')',
+                            }
+                        ],
+                        alignment: 'center'
+                    }
+                ]
+            };
+
+        },
+        content: [
+        { image: 'data:image/jpeg;base64'+ imageURI, margin: [768,-30,0,10], width: 50, height: 50 },
+        { text: 'Assam Power Distribution Company Limited', style: 'header' },
+        { text:  'ELECTRICAL SUB-DIVISION/IRCA : '+subDivision, style: 'subheaderCenter' },
+        { text:  'CIN : U40109AS2003SGC007242', style: 'subheaderCenter' },
+        { text:  'GSTIN : 18AABCL1354J1ZJ', style: 'subheaderCenter' },
+            { text:  searchParamType + ' Report', style: 'reportTitle' },
+            searchParamTextPdf,
+{ text: 'Generated Date: ' + today  + ' ' + currentDate.toLocaleTimeString() , style: 'normalText'},
+{
+                style: 'tableExample',
+                layout: {
+                    fillColor: function (rowIndex, node, columnIndex) {
+                        return (rowIndex === 0) ? '#c2dec2' : null;
+                    }
+                },
+                table: {
+                    headerRows: 1,
+                    widths: dynamicWidth,
+                    body: bodyToExtract
+                }
+            }
+        ],
+        styles: {
+            customStyle: {
+                bold: true
+            },
+            header: {
+                fontSize: 14,
+                bold: true,
+                alignment: 'center',
+                margin: [0, 0, 0, 5]
+            },
+            subheaderCenter: {
+                fontSize: 10,
+                alignment: 'center',
+                margin: [0, 0, 0, 5]
+            },
+            normalText: {
+            fontSize: 10,
+                margin: [0, 0, 0, 5]
+            },
+            tableExample: {
+                margin: [0, 5, 5, 0],
+                alignment: 'center',
+                fontSize: 10,
+            },
+            reportTitle: {
+            fontSize: 10,
+                alignment: 'center',
+                margin: [0, 0, 0, 15]
+            }
+        },
+    };
+
+    var pdf = createPdf(docDefinition);
+    pdf.download(fileName + '.pdf');
+}
+
+function printPdf(fileName, fromDate, toDate, exportType, subDivision) {
+	console.log("Normal",fromDate,toDate);
 
 var startDate = "", endDate = ""
 try {
@@ -215,6 +352,9 @@ toDate = toDate.split('-').reverse().join('/')
 
 startDate = { text: 'Start Date: ' + fromDate , style: 'normalText'}
 endDate = { text: 'End Date: ' + toDate , style: 'normalText'}
+}else if(fromDate.length > 2 ){
+	startDate = { text: 'Consumer Number: ' + fromDate , style: 'normalText'}
+	endDate = { text: ' ', style: 'normalText'}
 } else {
 
 startDate = { text: 'Month: ' + MONTHS[parseInt(fromDate) - 1] , style: 'normalText'}
@@ -242,7 +382,7 @@ var dd = currentDate.getDate();
    
     var docDefinition = {
 
-pageSize: 'A4',
+pageSize: 'A2',
         pageOrientation: 'landscape',
         footer: function (currentPage, pageCount) {
             return {
@@ -267,7 +407,7 @@ pageSize: 'A4',
 
         },
         content: [
-        { image: 'data:image/jpeg;base64'+ imageURI, margin: [355,-30,0,10], width: 50, height: 50 },
+        { image: 'data:image/jpeg;base64'+ imageURI, margin: [768,-30,0,10], width: 50, height: 50 },
         { text: 'Assam Power Distribution Company Limited', style: 'header' },
         { text:  'ELECTRICAL SUB-DIVISION/IRCA : '+subDivision, style: 'subheaderCenter' },
         { text:  'CIN : U40109AS2003SGC007242', style: 'subheaderCenter' },
@@ -329,14 +469,17 @@ function printOutstandingPdf(fileName, outstandingAmount, exportType, subDivisio
 
 var outText = null;
 var pageSizeVer = null;
-if(typeof(outstandingAmount) == "object"){
-outText = { text: 'Financial Year: ' + outstandingAmount.year , style: 'normalText'}
-pageSizeVer = 'A4';
-}else{
-if (outstandingAmount != null) {
-outText = { text: 'Outstanding Amount: ' + outstandingAmount , style: 'normalText'}
-pageSizeVer = 'A2';
-}
+
+if (outstandingAmount == null) {
+	pageSizeVer = 'A2';
+} else if(typeof(outstandingAmount) == "object"){
+	outText = { text: 'Financial Year: ' + outstandingAmount.year , style: 'normalText'}
+	pageSizeVer = 'A4';
+}else	{
+	if (outstandingAmount != null) {
+		outText = { text: 'Outstanding Amount: ' + outstandingAmount , style: 'normalText'}
+		pageSizeVer = 'A2';
+	}
 }
 
 
