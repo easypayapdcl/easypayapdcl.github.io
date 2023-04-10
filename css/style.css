@@ -104,7 +104,7 @@ h5 {
 
   
 body { padding-bottom: 45px !important; }
-.page-footer { height: 55px !important }
+.page-footer { height: 55px !important; z-index: 0 !important; }
 .page-footer .footer-copyright { min-height: auto !important}
 .row { margin-bottom: 0px !important }
 
