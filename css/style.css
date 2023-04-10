@@ -542,5 +542,8 @@ transition: .3s ease all;
      color: #9e9e9e  !important;
 	 pointer-events:none;
 	 opacity:0.5 !important;
-	}
+}
+.sidenav .collapsible-body li a, .sidenav.fixed .collapsible-body li a {
+    padding: 0 3.5px 0 22px !important;
+}
 	
